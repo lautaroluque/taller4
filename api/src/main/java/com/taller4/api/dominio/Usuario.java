@@ -16,14 +16,25 @@ public class Usuario {
     private String nombre;
     private String email;
     private Date fechaDeNacimiento;
+    private Integer[] notas;
+    private Integer[] favoritos;
+    private Integer[] imagenes;
+    private Integer[] audios;
+    private Integer[] categorias;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String email, Date fechaDeNacimiento) {
+    public Usuario(Integer id, String nombre, String email, Date fechaDeNacimiento, Integer[] notas, Integer[] favoritos, Integer[] imagenes, Integer[] audios, Integer[] categorias) {
+        this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.fechaDeNacimiento = fechaDeNacimiento;
+        this.notas = notas;
+        this.favoritos = favoritos;
+        this.imagenes = imagenes;
+        this.audios = audios;
+        this.categorias = categorias;
     }
 
     public Integer getId() {
@@ -58,6 +69,46 @@ public class Usuario {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
+    public Integer[] getNotas() {
+        return this.notas;
+    }
+
+    public void setNotas(Integer[] notas) {
+        this.notas = notas;
+    }
+
+    public Integer[] getFavoritos() {
+        return this.favoritos;
+    }
+
+    public void setFavoritos(Integer[] favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public Integer[] getImagenes() {
+        return this.imagenes;
+    }
+
+    public void setImagenes(Integer[] imagenes) {
+        this.imagenes = imagenes;
+    }
+
+    public Integer[] getAudios() {
+        return this.audios;
+    }
+
+    public void setAudios(Integer[] audios) {
+        this.audios = audios;
+    }
+
+    public Integer[] getCategorias() {
+        return this.categorias;
+    }
+
+    public void setCategorias(Integer[] categorias) {
+        this.categorias = categorias;
+    }
+
     public Usuario id(Integer id) {
         this.id = id;
         return this;
@@ -78,6 +129,31 @@ public class Usuario {
         return this;
     }
 
+    public Usuario notas(Integer[] notas) {
+        this.notas = notas;
+        return this;
+    }
+
+    public Usuario favoritos(Integer[] favoritos) {
+        this.favoritos = favoritos;
+        return this;
+    }
+
+    public Usuario imagenes(Integer[] imagenes) {
+        this.imagenes = imagenes;
+        return this;
+    }
+
+    public Usuario audios(Integer[] audios) {
+        this.audios = audios;
+        return this;
+    }
+
+    public Usuario categorias(Integer[] categorias) {
+        this.categorias = categorias;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -86,12 +162,12 @@ public class Usuario {
             return false;
         }
         Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(nombre, usuario.nombre) && Objects.equals(email, usuario.email) && Objects.equals(fechaDeNacimiento, usuario.fechaDeNacimiento);
+        return Objects.equals(id, usuario.id) && Objects.equals(nombre, usuario.nombre) && Objects.equals(email, usuario.email) && Objects.equals(fechaDeNacimiento, usuario.fechaDeNacimiento) && Objects.equals(notas, usuario.notas) && Objects.equals(favoritos, usuario.favoritos) && Objects.equals(imagenes, usuario.imagenes) && Objects.equals(audios, usuario.audios) && Objects.equals(categorias, usuario.categorias);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, email, fechaDeNacimiento);
+        return Objects.hash(id, nombre, email, fechaDeNacimiento, notas, favoritos, imagenes, audios, categorias);
     }
 
     @Override
@@ -101,6 +177,12 @@ public class Usuario {
             ", nombre='" + getNombre() + "'" +
             ", email='" + getEmail() + "'" +
             ", fechaDeNacimiento='" + getFechaDeNacimiento() + "'" +
+            ", notas='" + getNotas() + "'" +
+            ", favoritos='" + getFavoritos() + "'" +
+            ", imagenes='" + getImagenes() + "'" +
+            ", audios='" + getAudios() + "'" +
+            ", categorias='" + getCategorias() + "'" +
             "}";
     }
+
 }

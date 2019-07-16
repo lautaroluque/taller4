@@ -1,8 +1,8 @@
 package com.taller4.api.controladores;
 
 import java.util.List;
-import com.taller4.api.dominio.Nota;
-import com.taller4.api.repositorios.NotaRepository;
+import com.taller4.api.dominio.Imagen;
+import com.taller4.api.repositorios.ImagenRepository;
 import com.taller4.api.excepciones.ItemNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,44 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class NotaController {
-    private final NotaRepository repo;
+public class ImagenController {
+    private final ImagenRepository repo;
 
-    public NotaController(NotaRepository repo) {
+    public ImagenController(ImagenRepository repo) {
         this.repo = repo;
     }
 
-    @GetMapping("/notas")
-    List<Nota> todas() {
+    @GetMapping("/imagenes")
+    List<Imagen> todas() {
         return repo.findAll();
     }
 
-    @PostMapping("/notas")
-    Nota nueva(@RequestBody Nota nuevaNota) {
-        return repo.save(nuevaNota);
+    @PostMapping("/imagenes")
+    Imagen nueva(@RequestBody Imagen nuevaImagen) {
+        return repo.save(nuevaImagen);
     }
 
-    @GetMapping("/notas/{id}")
-    Nota una(@PathVariable Integer id) {
+    @GetMapping("/imagenes/{id}")
+    Imagen una(@PathVariable Integer id) {
         return repo.findById(id)
         .orElseThrow(() -> new ItemNotFoundException(id));
     }
 
-    @PutMapping("/notas/{id}")
-    Nota reemplazar(@RequestBody Nota nuevaNota, @PathVariable Integer id) {
+    @PutMapping("/imagenes/{id}")
+    Imagen reemplazar(@RequestBody Imagen nuevaImagen, @PathVariable Integer id) {
         return repo.findById(id)
-        .map(nota -> {
-            nota.setNombre(nuevaNota.getNombre());
-            nota.setContenido(nuevaNota.getContenido());
-            return repo.save(nota);
+        .map(imagen -> {
+            imagen.setUbicacion(nuevaImagen.getUbicacion());
+            return repo.save(imagen);
         })
         .orElseGet(() -> {
-            nuevaNota.setId(id);
-            return repo.save(nuevaNota);
+            nuevaImagen.setId(id);
+            return repo.save(nuevaImagen);
         });
     }
 
-    @DeleteMapping("/notas/{id}")
+    @DeleteMapping("/imagenes/{id}")
     void eliminar(@PathVariable Integer id) {
         repo.deleteById(id);
     }

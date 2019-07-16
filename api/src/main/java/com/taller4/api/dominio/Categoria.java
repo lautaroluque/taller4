@@ -13,12 +13,16 @@ public class Categoria {
     private Integer id;
 
     private String nombre;
+    private Integer[] notas;
+
 
     public Categoria() {
     }
 
-    public Categoria(String nombre) {
+    public Categoria(Integer id, String nombre, Integer[] notas) {
+        this.id = id;
         this.nombre = nombre;
+        this.notas = notas;
     }
 
     public Integer getId() {
@@ -37,6 +41,14 @@ public class Categoria {
         this.nombre = nombre;
     }
 
+    public Integer[] getNotas() {
+        return this.notas;
+    }
+
+    public void setNotas(Integer[] notas) {
+        this.notas = notas;
+    }
+
     public Categoria id(Integer id) {
         this.id = id;
         return this;
@@ -44,6 +56,11 @@ public class Categoria {
 
     public Categoria nombre(String nombre) {
         this.nombre = nombre;
+        return this;
+    }
+
+    public Categoria notas(Integer[] notas) {
+        this.notas = notas;
         return this;
     }
 
@@ -55,12 +72,12 @@ public class Categoria {
             return false;
         }
         Categoria categoria = (Categoria) o;
-        return Objects.equals(id, categoria.id) && Objects.equals(nombre, categoria.nombre);
+        return Objects.equals(id, categoria.id) && Objects.equals(nombre, categoria.nombre) && Objects.equals(notas, categoria.notas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre);
+        return Objects.hash(id, nombre, notas);
     }
 
     @Override
@@ -68,6 +85,7 @@ public class Categoria {
         return "{" +
             " id='" + getId() + "'" +
             ", nombre='" + getNombre() + "'" +
+            ", notas='" + getNotas() + "'" +
             "}";
     }
     

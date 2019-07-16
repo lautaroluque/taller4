@@ -13,7 +13,15 @@ class LlenarDB {
   @Bean
   CommandLineRunner initDatabase(UsuarioRepository repoUsuarios) {
     return args -> {
-      repoUsuarios.save(new Usuario("Admin", "admin@admin", new Date()));
+      Usuario usuario = new Usuario();
+      usuario.setNombre("Admin");
+      usuario.setFechaDeNacimiento(new Date());
+      usuario.setNotas(new Integer[200]);
+      usuario.setAudios(new Integer[20]);
+      usuario.setCategorias(new Integer[20]);
+      usuario.setFavoritos(new Integer[20]);
+      usuario.setImagenes(new Integer[20]);
+      repoUsuarios.save(usuario);
     };
   }
 }

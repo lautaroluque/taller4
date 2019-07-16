@@ -1,8 +1,8 @@
 package com.taller4.api.controladores;
 
 import java.util.List;
-import com.taller4.api.dominio.Nota;
-import com.taller4.api.repositorios.NotaRepository;
+import com.taller4.api.dominio.Audio;
+import com.taller4.api.repositorios.AudioRepository;
 import com.taller4.api.excepciones.ItemNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,44 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class NotaController {
-    private final NotaRepository repo;
+public class AudioController {
+    private final AudioRepository repo;
 
-    public NotaController(NotaRepository repo) {
+    public AudioController(AudioRepository repo) {
         this.repo = repo;
     }
 
-    @GetMapping("/notas")
-    List<Nota> todas() {
+    @GetMapping("/audios")
+    List<Audio> todas() {
         return repo.findAll();
     }
 
-    @PostMapping("/notas")
-    Nota nueva(@RequestBody Nota nuevaNota) {
-        return repo.save(nuevaNota);
+    @PostMapping("/audios")
+    Audio nueva(@RequestBody Audio nuevoAudio) {
+        return repo.save(nuevoAudio);
     }
 
-    @GetMapping("/notas/{id}")
-    Nota una(@PathVariable Integer id) {
+    @GetMapping("/audios/{id}")
+    Audio una(@PathVariable Integer id) {
         return repo.findById(id)
         .orElseThrow(() -> new ItemNotFoundException(id));
     }
 
-    @PutMapping("/notas/{id}")
-    Nota reemplazar(@RequestBody Nota nuevaNota, @PathVariable Integer id) {
+    @PutMapping("/audios/{id}")
+    Audio reemplazar(@RequestBody Audio nuevoAudio, @PathVariable Integer id) {
         return repo.findById(id)
-        .map(nota -> {
-            nota.setNombre(nuevaNota.getNombre());
-            nota.setContenido(nuevaNota.getContenido());
-            return repo.save(nota);
+        .map(audio -> {
+            audio.setUbicacion(nuevoAudio.getUbicacion());
+            return repo.save(audio);
         })
         .orElseGet(() -> {
-            nuevaNota.setId(id);
-            return repo.save(nuevaNota);
+            nuevoAudio.setId(id);
+            return repo.save(nuevoAudio);
         });
     }
 
-    @DeleteMapping("/notas/{id}")
+    @DeleteMapping("/audios/{id}")
     void eliminar(@PathVariable Integer id) {
         repo.deleteById(id);
     }
