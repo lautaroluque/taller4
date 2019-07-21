@@ -1,18 +1,22 @@
-package com.taller4.api.dominio;
+package com.taller4.app.dominio;
 
 import java.util.Date;
 import java.util.Objects;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class Usuario{
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+    @Column(nullable = false, unique = true)
+    private String username;
+    private String password;
     private String nombre;
     private String email;
     private Date fechaDeNacimiento;
@@ -22,11 +26,14 @@ public class Usuario {
     private Integer[] audios;
     private Integer[] categorias;
 
+
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nombre, String email, Date fechaDeNacimiento, Integer[] notas, Integer[] favoritos, Integer[] imagenes, Integer[] audios, Integer[] categorias) {
+    public Usuario(Integer id, String username, String password, String nombre, String email, Date fechaDeNacimiento, Integer[] notas, Integer[] favoritos, Integer[] imagenes, Integer[] audios, Integer[] categorias) {
         this.id = id;
+        this.username = username;
+        this.password = password;
         this.nombre = nombre;
         this.email = email;
         this.fechaDeNacimiento = fechaDeNacimiento;
@@ -43,6 +50,22 @@ public class Usuario {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {
@@ -114,6 +137,16 @@ public class Usuario {
         return this;
     }
 
+    public Usuario username(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public Usuario password(String password) {
+        this.password = password;
+        return this;
+    }
+
     public Usuario nombre(String nombre) {
         this.nombre = nombre;
         return this;
@@ -162,18 +195,20 @@ public class Usuario {
             return false;
         }
         Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(nombre, usuario.nombre) && Objects.equals(email, usuario.email) && Objects.equals(fechaDeNacimiento, usuario.fechaDeNacimiento) && Objects.equals(notas, usuario.notas) && Objects.equals(favoritos, usuario.favoritos) && Objects.equals(imagenes, usuario.imagenes) && Objects.equals(audios, usuario.audios) && Objects.equals(categorias, usuario.categorias);
+        return Objects.equals(id, usuario.id) && Objects.equals(username, usuario.username) && Objects.equals(password, usuario.password) && Objects.equals(nombre, usuario.nombre) && Objects.equals(email, usuario.email) && Objects.equals(fechaDeNacimiento, usuario.fechaDeNacimiento) && Objects.equals(notas, usuario.notas) && Objects.equals(favoritos, usuario.favoritos) && Objects.equals(imagenes, usuario.imagenes) && Objects.equals(audios, usuario.audios) && Objects.equals(categorias, usuario.categorias);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, email, fechaDeNacimiento, notas, favoritos, imagenes, audios, categorias);
+        return Objects.hash(id, username, password, nombre, email, fechaDeNacimiento, notas, favoritos, imagenes, audios, categorias);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
+            ", username='" + getUsername() + "'" +
+            ", password='" + getPassword() + "'" +
             ", nombre='" + getNombre() + "'" +
             ", email='" + getEmail() + "'" +
             ", fechaDeNacimiento='" + getFechaDeNacimiento() + "'" +
@@ -184,5 +219,5 @@ public class Usuario {
             ", categorias='" + getCategorias() + "'" +
             "}";
     }
-
+    
 }

@@ -1,4 +1,4 @@
-package com.taller4.api.dominio;
+package com.taller4.app.dominio;
 
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Imagen 
+public class Audio 
 {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,10 +16,11 @@ public class Imagen
 
     private String ubicacion;
 
-    public Imagen() {
+
+    public Audio() {
     }
 
-    public Imagen(Integer id, String ubicacion) {
+    public Audio(Integer id, String ubicacion) {
         this.id = id;
         this.ubicacion = ubicacion;
     }
@@ -40,12 +41,12 @@ public class Imagen
         this.ubicacion = ubicacion;
     }
 
-    public Imagen id(Integer id) {
+    public Audio id(Integer id) {
         this.id = id;
         return this;
     }
 
-    public Imagen ubicacion(String ubicacion) {
+    public Audio ubicacion(String ubicacion) {
         this.ubicacion = ubicacion;
         return this;
     }
@@ -54,11 +55,11 @@ public class Imagen
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof Imagen)) {
+        if (!(o instanceof Audio)) {
             return false;
         }
-        Imagen imagen = (Imagen) o;
-        return Objects.equals(id, imagen.id) && Objects.equals(ubicacion, imagen.ubicacion);
+        Audio audio = (Audio) o;
+        return Objects.equals(id, audio.id) && Objects.equals(ubicacion, audio.ubicacion);
     }
 
     @Override

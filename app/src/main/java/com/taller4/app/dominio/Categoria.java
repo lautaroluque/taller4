@@ -1,4 +1,4 @@
-package com.taller4.api.dominio;
+package com.taller4.app.dominio;
 
 import java.util.Objects;
 import javax.persistence.Entity;

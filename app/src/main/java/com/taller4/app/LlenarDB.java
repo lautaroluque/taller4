@@ -1,11 +1,11 @@
-package com.taller4.api;
+package com.taller4.app;
 
-import com.taller4.api.repositorios.NotaRepository;
-import com.taller4.api.repositorios.UsuarioRepository;
+import com.taller4.app.repositorios.NotaRepository;
+import com.taller4.app.repositorios.UsuarioRepository;
 import java.util.Date;
 
-import com.taller4.api.dominio.Nota;
-import com.taller4.api.dominio.Usuario;
+import com.taller4.app.dominio.Nota;
+import com.taller4.app.dominio.Usuario;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +17,8 @@ class LlenarDB {
   CommandLineRunner initDatabaseUsuarios(UsuarioRepository repoUsuarios) {
     return args -> {
       Usuario usuario = new Usuario();
+      usuario.setUsername("admin");
+      usuario.setPassword("1234");
       usuario.setNombre("Admin");
       usuario.setFechaDeNacimiento(new Date());
       usuario.setNotas(new Integer[200]);

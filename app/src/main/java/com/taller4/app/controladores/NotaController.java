@@ -1,9 +1,9 @@
-package com.taller4.api.controladores;
+package com.taller4.app.controladores;
 
 import java.util.List;
-import com.taller4.api.dominio.Nota;
-import com.taller4.api.repositorios.NotaRepository;
-import com.taller4.api.excepciones.ItemNotFoundException;
+import com.taller4.app.dominio.Nota;
+import com.taller4.app.repositorios.NotaRepository;
+import com.taller4.app.excepciones.ItemNotFoundException;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
