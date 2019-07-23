@@ -9,6 +9,7 @@ import { RegistroComponent } from './registro/registro.component';
 const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate:[AuthGaurdService] },
   { path: 'notas', component: CardsComponent, canActivate:[AuthGaurdService] }
 ];

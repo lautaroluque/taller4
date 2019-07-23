@@ -23,9 +23,9 @@ public class NotaController {
         this.repo = repo;
     }
 
-    @GetMapping("/notas")
-    List<Nota> todas() {
-        return repo.findAll();
+    @GetMapping("/notas/{username}")
+    List<Nota> todas(@PathVariable String username) {
+        return repo.findByDueño(username);
     }
 
     @PostMapping("/notas")
@@ -33,8 +33,8 @@ public class NotaController {
         return repo.save(nuevaNota);
     }
 
-    @GetMapping("/notas/{id}")
-    Nota una(@PathVariable Integer id) {
+    @GetMapping("/notas/{username}/{id}")
+    Nota una(@PathVariable String username, @PathVariable Integer id) {
         return repo.findById(id)
         .orElseThrow(() -> new ItemNotFoundException(id));
     }

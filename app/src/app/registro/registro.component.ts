@@ -3,6 +3,7 @@ import { Usuario } from '../usuario'
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,15 +20,16 @@ export class RegistroComponent implements OnInit {
 
   usuario: Usuario;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.usuario = new Usuario();
   }
 
   registro() {
-      return this.httpClient.post<Usuario>('http://localhost:8080/usuarios',this.usuario, httpOptions)
+      this.httpClient.post<Usuario>('http://localhost:8080/usuarios',this.usuario, httpOptions)
       .pipe(retry(1),catchError(this.handleError)).subscribe();
+      this.router.navigate(['login']);
   }
 
   private handleError(error: HttpErrorResponse) {

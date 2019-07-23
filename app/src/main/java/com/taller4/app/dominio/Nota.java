@@ -17,13 +17,13 @@ public class Nota
     private String contenido;
     private Integer[] audios;
     private Integer[] imagenes;
-    private Integer dueño;
+    private String dueño;
     private Integer[] categorias;
 
     public Nota() {
     }
 
-    public Nota(Integer id, String nombre, String contenido, Integer[] audios, Integer[] imagenes, Integer dueño, Integer[] categorias) {
+    public Nota(Integer id, String nombre, String contenido, Integer[] audios, Integer[] imagenes, String dueño, Integer[] categorias) {
         this.id = id;
         this.nombre = nombre;
         this.contenido = contenido;
@@ -73,11 +73,11 @@ public class Nota
         this.imagenes = imagenes;
     }
 
-    public Integer getDueño() {
+    public String getDueño() {
         return this.dueño;
     }
 
-    public void setDueño(Integer dueño) {
+    public void setDueño(String dueño) {
         this.dueño = dueño;
     }
 
@@ -114,7 +114,7 @@ public class Nota
         return this;
     }
 
-    public Nota dueño(Integer dueño) {
+    public Nota dueño(String dueño) {
         this.dueño = dueño;
         return this;
     }

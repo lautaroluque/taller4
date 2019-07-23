@@ -12,7 +12,8 @@ export class NotaService {
 
   constructor(private http: HttpClient) { }
 
-  getNotas(): Observable<Nota[]> {
-    return this.http.get<Nota[]>(this.notasUrl);
+  getNotas(username: string): Observable<Nota[]> {
+    const url = `${this.notasUrl}/${username}`; 
+    return this.http.get<Nota[]>(url);
   }
 }

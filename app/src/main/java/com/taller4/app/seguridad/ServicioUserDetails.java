@@ -24,9 +24,10 @@ public class ServicioUserDetails implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws ItemNotFoundException {
-        if ("admin".equals(username)) 
+        Usuario usuario = repoUsuarios.findByUsername(username);
+        if (usuario != null)
         {
-			return new User("admin", bcryptEncoder.encode("1234"), new ArrayList<>());
+			return new User(usuario.getUsername(), bcryptEncoder.encode(usuario.getPassword()), new ArrayList<>());
         } 
         else 
         {

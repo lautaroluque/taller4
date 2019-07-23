@@ -17,7 +17,8 @@ export class CardsComponent implements OnInit {
   }
 
   getNotas(): void {
+    let username = sessionStorage.getItem('username');
     this.notas = [];
-    this.notaService.getNotas().subscribe(notas => this.notas = notas);
+    this.notaService.getNotas(username).subscribe(notas => this.notas = notas);
   }
 }

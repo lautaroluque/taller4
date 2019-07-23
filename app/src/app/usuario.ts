@@ -15,5 +15,5 @@ export class Usuario {
 }
 
 export class LoginResponse{
-    constructor(public token:string) {}
+    constructor(public token: string) {}
 }

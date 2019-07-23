@@ -15,6 +15,7 @@ import { LoginService } from './login.service';
 import { AppRoutingModule } from './app-routing.module';
 import { LogoutComponent } from './logout/logout.component';
 import { RegistroComponent } from './registro/registro.component';
+import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RegistroComponent } from './registro/registro.component';
     CardsComponent,
     LoginComponent,
     LogoutComponent,
-    RegistroComponent
+    RegistroComponent,
+    NuevaNotaComponent
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,9 @@ export class LoginService {
   }
 
   logOut() {
-    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userid');
   }
   
   private handleError(error: HttpErrorResponse) {
