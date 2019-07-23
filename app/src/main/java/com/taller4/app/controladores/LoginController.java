@@ -16,6 +16,7 @@ import com.taller4.app.seguridad.ServicioUserDetails;
 import com.taller4.app.seguridad.JwtTokenUtil;
 import com.taller4.app.dominio.LoginRequest;
 import com.taller4.app.dominio.LoginResponse;
+import com.taller4.app.dominio.Usuario;
 
 @RestController
 @CrossOrigin
@@ -34,6 +35,11 @@ public class LoginController {
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new LoginResponse(token));
     }
+
+    @RequestMapping(value = "/registro", method = RequestMethod.POST)
+	public ResponseEntity<?> saveUser(@RequestBody Usuario usuario) throws Exception {
+		return ResponseEntity.ok(servicioUserDetails.save(usuario));
+	}
 
     private void authenticate(String username, String password) throws Exception {
         try {

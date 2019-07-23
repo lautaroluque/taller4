@@ -4,21 +4,26 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatCardModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule,
+         MatDialogModule, MatTableModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule,
+         MatNativeDateModule, MatDatepickerModule } from '@angular/material';
 import { CardsComponent } from './cards/cards.component';
 import { LoginComponent } from './login/login.component';
 import { LoginInterceptorService } from './logininterceptor.service';
-
+import { LoginService } from './login.service';
 import { AppRoutingModule } from './app-routing.module';
+import { LogoutComponent } from './logout/logout.component';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     CardsComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +32,20 @@ import { AppRoutingModule } from './app-routing.module';
     MatToolbarModule,
     FormsModule,
     MatCardModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    MatButtonModule, 
+    MatDialogModule, 
+    MatTableModule, 
+    MatMenuModule, 
+    MatIconModule, 
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
+    LoginService,
     {
     provide:HTTP_INTERCEPTORS, useClass:LoginInterceptorService, multi:true
     }

@@ -6,19 +6,24 @@ import java.util.Date;
 
 import com.taller4.app.dominio.Nota;
 import com.taller4.app.dominio.Usuario;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 class LlenarDB {
+  @Autowired
+    private PasswordEncoder bcryptEncoder;
 
   @Bean
   CommandLineRunner initDatabaseUsuarios(UsuarioRepository repoUsuarios) {
     return args -> {
       Usuario usuario = new Usuario();
       usuario.setUsername("admin");
-      usuario.setPassword("1234");
+      usuario.setPassword(bcryptEncoder.encode("1234"));
       usuario.setNombre("Admin");
       usuario.setFechaDeNacimiento(new Date());
       usuario.setNotas(new Integer[200]);

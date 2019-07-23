@@ -1,0 +1,26 @@
+<mat-card class="card">
+    <mat-card-content>
+        <form class="form">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Username" [(ngModel)]="usuario.username" name="username" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Password" [(ngModel)]="usuario.password" type="password" name="password" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre" name="nombre" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Email" [(ngModel)]="usuario.email" name="email" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="usuario.fechaDeNacimiento" name="fechaDeNacimiento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <a (click)=registro() mat-raised-button color="primary">Registrarse</a>
+    </mat-card-actions>
+</mat-card>

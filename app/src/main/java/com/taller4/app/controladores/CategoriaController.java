@@ -4,6 +4,8 @@ import java.util.List;
 import com.taller4.app.dominio.Categoria;
 import com.taller4.app.repositorios.CategoriaRepository;
 import com.taller4.app.excepciones.ItemNotFoundException;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class CategoriaController {
     private final CategoriaRepository repo;

@@ -1,3 +1,23 @@
 <mat-toolbar color="primary">
-    <a routerLink="/notas" routerLinkActive="active">{{ titulo }}</a>
+    <mat-toolbar-row>
+        <span>{{titulo}}</span>
+        <span class="align-center"></span>
+        <span class="spacer"></span>
+        <button mat-icon-button *ngIf="!loginService.isUserLoggedIn()" routerLink="/registro">
+            <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <span>Opciones</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>
+                <span><a routerLink="/logout">Logout</a></span>
+            </button>
+        </mat-menu>
+    </mat-toolbar-row>
 </mat-toolbar>

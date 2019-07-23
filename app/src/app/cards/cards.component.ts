@@ -17,6 +17,7 @@ export class CardsComponent implements OnInit {
   }
 
   getNotas(): void {
+    this.notas = [];
     this.notaService.getNotas().subscribe(notas => this.notas = notas);
   }
 }

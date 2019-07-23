@@ -12,10 +12,11 @@ import javax.persistence.Id;
 @Entity
 public class Usuario{
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false, unique = true)
     private String username;
+    @Column
     private String password;
     private String nombre;
     private String email;

@@ -10,22 +10,25 @@ import { LoginService } from '../login.service';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'admin'
-  password = '1234'
-  invalidLogin = false
+  username: string;
+  password: string;
 
-  constructor(private router: Router,
-    private loginservice: LoginService) { }
+  constructor(private router: Router, private loginservice: LoginService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  checkLogin() 
+  {
+    if (this.loginservice.logIn(this.username, this.password)) 
+    {
+      this.router.navigate(['notas']);
+    }
+    else
+    {
+      alert("Login incorrecto");
+    }
   }
-
-  checkLogin() {
-    if (this.loginservice.logIn(this.username, this.password)
-    ) {
-      this.router.navigate([''])
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
+  goToRegister() {
+    this.router.navigate(['registro']);
   }
 }
