@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotaService } from '../nota.service';
+import { Nota } from '../nota';
 
 @Component({
   selector: 'app-nueva-nota',
@@ -6,26 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nueva-nota.component.css']
 })
 export class NuevaNotaComponent implements OnInit {
-
-  fabButtons = [{ icon: 'note_add' }];
-  buttons = [];
-  togglerState = 'inactive';
-  constructor() { }
+  private nota: Nota;
+  constructor(public notaService: NotaService) { }
 
   ngOnInit() {
   }
 
-  showItems() {
-    this.togglerState = 'active';
-    this.buttons = this.fabButtons;
-  }
-
-  hideItems() {
-    this.togglerState = 'inactive';
-    this.buttons = [];
-  }
-
-  onToggleFab() {
-    this.buttons.length ? this.hideItems() : this.showItems();
+  createNota(){
+    let tempNota = new Nota();
+    this.notaService.postNota(tempNota).subscribe(notaCreada => this.nota = notaCreada);
+    this.notaService.editNota(this.nota);
   }
 }

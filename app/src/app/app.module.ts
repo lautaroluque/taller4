@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LogoutComponent } from './logout/logout.component';
 import { RegistroComponent } from './registro/registro.component';
 import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
+import { EditorNotaComponent } from './editor-nota/editor-nota.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
     LoginComponent,
     LogoutComponent,
     RegistroComponent,
-    NuevaNotaComponent
+    NuevaNotaComponent,
+    EditorNotaComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,6 @@ import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
     MatToolbarModule,
     FormsModule,
     MatCardModule,
-    AppRoutingModule,
     MatFormFieldModule, 
     MatInputModule,
     MatButtonModule, 
@@ -44,7 +46,9 @@ import { NuevaNotaComponent } from './nueva-nota/nueva-nota.component';
     MatIconModule, 
     MatProgressSpinnerModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CKEditorModule,
+    AppRoutingModule
   ],
   providers: [
     LoginService,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { ToolbarService } from '../toolbar.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,7 +9,7 @@ import { LoginService } from '../login.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(public loginService: LoginService) { }
+  constructor(public loginService: LoginService, public toolbarService: ToolbarService) { }
 
   titulo = 'Notas';
 

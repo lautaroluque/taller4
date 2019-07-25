@@ -1,11 +1,8 @@
 export class Nota {
-  id: number;
-  nombre: string;
-  contenido: string;
-  dueño: string;
+  public id: number;
+  public nombre: string;
+  public contenido: string;
+  public dueño: string;
 
-  constructor(nombre: string, contenido: string) {
-    this.nombre = nombre;
-    this.contenido = contenido;
-  }
+  constructor(){ }
 }

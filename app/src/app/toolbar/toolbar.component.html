@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <span>{{titulo}}</span>
+        <button mat-icon-button *ngIf="toolbarService.isEditor()" routerLink="/notas">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span *ngIf="!toolbarService.isEditor()">{{titulo}}</span>
         <span class="align-center"></span>
         <span class="spacer"></span>
         <button mat-icon-button *ngIf="!loginService.isUserLoggedIn()" routerLink="/registro">

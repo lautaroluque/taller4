@@ -21,4 +21,8 @@ export class CardsComponent implements OnInit {
     this.notas = [];
     this.notaService.getNotas(username).subscribe(notas => this.notas = notas);
   }
+
+  editNota(nota: Nota): void {
+    this.notaService.editNota(nota);
+  }
 }

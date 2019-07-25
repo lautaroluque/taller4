@@ -2,7 +2,11 @@
   <mat-card>
     <mat-card-title>{{ nota.nombre }}</mat-card-title>
     <mat-card-content>{{ nota.contenido }}</mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="editNota(nota)">Edit</button>
+    </mat-card-actions>
   </mat-card>
   <br />
 </div>
+<app-nueva-nota></app-nueva-nota>
 
