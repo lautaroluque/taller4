@@ -25,4 +25,12 @@ export class CardsComponent implements OnInit {
   editNota(nota: Nota): void {
     this.notaService.editNota(nota);
   }
+
+  getFirstLines(nota: Nota): string {
+    var lineas = nota.contenido.split('</p>');
+    if (lineas.length > 1){
+      return lineas[0] + lineas [1];
+    }
+    else return lineas[0];
+  }
 }

@@ -17,17 +17,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  checkLogin() 
-  {
-    if (this.loginservice.logIn(this.username, this.password)) 
-    {
+  login(){
+    this.loginservice.logIn(this.username, this.password).subscribe(userData => {
+      sessionStorage.setItem('username',this.username);
+      let tokenStr= 'Bearer '+userData.token;
+      sessionStorage.setItem('token', tokenStr);
       this.router.navigate(['notas']);
-    }
-    else
-    {
-      alert("Login incorrecto");
-    }
+     });
   }
+
   goToRegister() {
     this.router.navigate(['registro']);
   }

@@ -1,0 +1,5 @@
+span {
+  background: -webkit-linear-gradient(0deg, #fff, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

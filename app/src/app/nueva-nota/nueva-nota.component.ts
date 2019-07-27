@@ -8,7 +8,7 @@ import { Nota } from '../nota';
   styleUrls: ['./nueva-nota.component.css']
 })
 export class NuevaNotaComponent implements OnInit {
-  private nota: Nota;
+  
   constructor(public notaService: NotaService) { }
 
   ngOnInit() {
@@ -16,7 +16,6 @@ export class NuevaNotaComponent implements OnInit {
 
   createNota(){
     let tempNota = new Nota();
-    this.notaService.postNota(tempNota).subscribe(notaCreada => this.nota = notaCreada);
-    this.notaService.editNota(this.nota);
+    this.notaService.postNota(tempNota).subscribe(notaCreada => this.notaService.editNota(notaCreada));
   }
 }

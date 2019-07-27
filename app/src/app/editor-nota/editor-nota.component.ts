@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import * as BalloonBlockEditor from '@ckeditor/ckeditor5-build-balloon-block';
+import * as BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
 import { Nota } from '../nota';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import { NotaService } from '../nota.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ToolbarService } from '../toolbar.service';
 
 @Component({
@@ -15,26 +15,25 @@ export class EditorNotaComponent implements OnInit, OnDestroy {
 
   @Input() public nota: Nota;
 
-  public Editor = BalloonBlockEditor;
+  public Editor = BalloonEditor;
 
-  constructor(public notaService: NotaService, 
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private toolbarService: ToolbarService) { }
+  constructor(public notaService: NotaService, private route: ActivatedRoute, private toolbarService: ToolbarService) {
+      this.nota = new Nota();
+  }
 
   ngOnInit() {
     this.toolbarService.setEditor(true);
     let id = this.route.snapshot.paramMap.get('id');
     let username = sessionStorage.getItem('username');
-    this.notaService.getNota(username, id).subscribe(notaRecibida => this.nota = notaRecibida);
+    this.notaService.getNota(username, id).subscribe(nota => this.nota = nota);
   }
 
   ngOnDestroy(): void {
     this.toolbarService.setEditor(false);
   }
-  public onChange( { editor }: ChangeEvent ) {
-    const data = editor.getData();
-    this.nota.contenido = data;
-    this.notaService.putNota(this.nota).subscribe;
+
+  public onChange({editor}: ChangeEvent) {
+    this.nota.contenido = editor.getData();
+    this.notaService.putNota(this.nota).subscribe();
   }
 }

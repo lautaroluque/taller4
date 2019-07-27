@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NotaService {
 
+  private currentNota: Nota;
   private notasUrl = 'http://localhost:8080/notas';
 
   constructor(private http: HttpClient, private router: Router) { }
