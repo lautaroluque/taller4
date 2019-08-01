@@ -1,5 +1,6 @@
-span {
-  background: -webkit-linear-gradient(0deg, #fff, #000);
+.fadetext {
+  background: 
+  -webkit-linear-gradient(90deg, #000, #fff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -5,6 +5,8 @@ import com.taller4.app.dominio.Nota;
 import com.taller4.app.repositorios.NotaRepository;
 import com.taller4.app.excepciones.ItemNotFoundException;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,13 @@ public class NotaController {
 
     @GetMapping("/notas/{username}")
     List<Nota> todas(@PathVariable String username) {
-        return repo.findByDueño(username);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        if (currentPrincipalName.equals(username)) {
+            return repo.findByDueño(username);
+        } else {
+            return null;
+        }
     }
 
     @PostMapping("/notas")
@@ -35,19 +43,22 @@ public class NotaController {
 
     @GetMapping("/notas/{username}/{id}")
     Nota una(@PathVariable String username, @PathVariable Integer id) {
-        return repo.findById(id)
-        .orElseThrow(() -> new ItemNotFoundException(id));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        if (currentPrincipalName.equals(username)) {
+        return repo.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+    } else {
+        return null;
+    }
     }
 
     @PutMapping("/notas/{id}")
     Nota reemplazar(@RequestBody Nota nuevaNota, @PathVariable Integer id) {
-        return repo.findById(id)
-        .map(nota -> {
+        return repo.findById(id).map(nota -> {
             nota.setNombre(nuevaNota.getNombre());
             nota.setContenido(nuevaNota.getContenido());
             return repo.save(nota);
-        })
-        .orElseGet(() -> {
+        }).orElseGet(() -> {
             nuevaNota.setId(id);
             return repo.save(nuevaNota);
         });

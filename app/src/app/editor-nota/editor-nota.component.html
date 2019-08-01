@@ -1,1 +1,10 @@
-<ckeditor [(ngModel)]="nota.contenido" [editor]="Editor" (change)="onChange($event)"></ckeditor>
+<mat-card>
+    <mat-card-content>
+        <form #notaForm="ngForm">
+            <mat-form-field class="full-width">
+                <input matInput [(ngModel)]="nota.nombre" placeholder="Título" name="nombre" (change)="guardarTitulo()"/>
+            </mat-form-field>
+            <ckeditor [(ngModel)]="nota.contenido" [editor]="Editor" (change)="guardarContenido($event)" name="contenido" (ready)="listo($event)"></ckeditor>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -5,6 +5,8 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import { NotaService } from '../nota.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolbarService } from '../toolbar.service';
+import { ImageService } from '../image.service';
+import { MiUploadAdapter } from './upload-adapter'
 
 @Component({
   selector: 'app-editor-nota',
@@ -13,27 +15,39 @@ import { ToolbarService } from '../toolbar.service';
 })
 export class EditorNotaComponent implements OnInit, OnDestroy {
 
-  @Input() public nota: Nota;
-
+  nota: Nota;
+  username: string;
   public Editor = BalloonEditor;
 
-  constructor(public notaService: NotaService, private route: ActivatedRoute, private toolbarService: ToolbarService) {
-      this.nota = new Nota();
+
+  constructor(public notaService: NotaService, private route: ActivatedRoute, private toolbarService: ToolbarService, public imageService: ImageService) {
+    this.nota = new Nota();
   }
 
   ngOnInit() {
     this.toolbarService.setEditor(true);
     let id = this.route.snapshot.paramMap.get('id');
-    let username = sessionStorage.getItem('username');
-    this.notaService.getNota(username, id).subscribe(nota => this.nota = nota);
+    this.username = sessionStorage.getItem('username');
+    this.notaService.getNota(this.username, id).subscribe(nota => this.nota = nota);
   }
 
   ngOnDestroy(): void {
     this.toolbarService.setEditor(false);
   }
 
-  public onChange({editor}: ChangeEvent) {
+  public guardarContenido({ editor }: ChangeEvent) {
     this.nota.contenido = editor.getData();
+
     this.notaService.putNota(this.nota).subscribe();
+  }
+
+  guardarTitulo() {
+    this.notaService.putNota(this.nota).subscribe();
+  }
+
+  public listo($event) {
+    $event.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+      return new MiUploadAdapter(loader, this.imageService, this.username);
+    };
   }
 }

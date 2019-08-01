@@ -16,6 +16,7 @@ export class NuevaNotaComponent implements OnInit {
 
   createNota(){
     let tempNota = new Nota();
+    tempNota.dueño = sessionStorage.getItem('username');
     this.notaService.postNota(tempNota).subscribe(notaCreada => this.notaService.editNota(notaCreada));
   }
 }

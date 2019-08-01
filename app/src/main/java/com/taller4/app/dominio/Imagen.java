@@ -16,12 +16,16 @@ public class Imagen
 
     private String ubicacion;
 
+    private String dueño;
+
+
     public Imagen() {
     }
 
-    public Imagen(Integer id, String ubicacion) {
+    public Imagen(Integer id, String ubicacion, String dueño) {
         this.id = id;
         this.ubicacion = ubicacion;
+        this.dueño = dueño;
     }
 
     public Integer getId() {
@@ -40,6 +44,14 @@ public class Imagen
         this.ubicacion = ubicacion;
     }
 
+    public String getDueño() {
+        return this.dueño;
+    }
+
+    public void setDueño(String dueño) {
+        this.dueño = dueño;
+    }
+
     public Imagen id(Integer id) {
         this.id = id;
         return this;
@@ -47,6 +59,11 @@ public class Imagen
 
     public Imagen ubicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+        return this;
+    }
+
+    public Imagen dueño(String dueño) {
+        this.dueño = dueño;
         return this;
     }
 
@@ -58,12 +75,12 @@ public class Imagen
             return false;
         }
         Imagen imagen = (Imagen) o;
-        return Objects.equals(id, imagen.id) && Objects.equals(ubicacion, imagen.ubicacion);
+        return Objects.equals(id, imagen.id) && Objects.equals(ubicacion, imagen.ubicacion) && Objects.equals(dueño, imagen.dueño);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ubicacion);
+        return Objects.hash(id, ubicacion, dueño);
     }
 
     @Override
@@ -71,7 +88,8 @@ public class Imagen
         return "{" +
             " id='" + getId() + "'" +
             ", ubicacion='" + getUbicacion() + "'" +
+            ", dueño='" + getDueño() + "'" +
             "}";
     }
-
+    
 }
